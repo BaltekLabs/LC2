@@ -90,7 +90,7 @@
                         <li class="list-inline-item dropdown notification-list">
                             <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="false" aria-expanded="false">
-                                <img src="{{url_for('static',filename='assets/images/users/avatar-1.jpg')}}" alt="user" class="rounded-circle">
+                                <img src="{{url_for('static',filename='assets/images/users/avatar-11.png')}}" alt="user" class="rounded-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                 <!-- item-->
@@ -364,13 +364,13 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title float-left">Dashboard</h4>
+                                    <h4 class="page-title float-left">Stock Quote</h4>
 
-                                    <ol class="breadcrumb float-right">
+                                    <!--ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="#">Adminox</a></li>
                                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                         <li class="breadcrumb-item active">Dashboard 1</li>
-                                    </ol>
+                                    </ol-->
 
                                     <div class="clearfix"></div>
                                 </div>
@@ -430,45 +430,13 @@
 
 
                         <div class="row">
-                            <div class="col-xl-4">
+                            <div class="col-lg-12">
                                 <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30">Liquid Block Status</h4>
-
+                                    <h2>{{ stock_request }}</h2>
                                     
-                                    
-                                        <h4 class="m-t-0 header-title">Block Active</h4>
-    
-                                        <div class="sk-cube-grid">
-                                            <div class="sk-cube sk-cube1"></div>
-                                            <div class="sk-cube sk-cube2"></div>
-                                            <div class="sk-cube sk-cube3"></div>
-                                            <div class="sk-cube sk-cube4"></div>
-                                            <div class="sk-cube sk-cube5"></div>
-                                            <div class="sk-cube sk-cube6"></div>
-                                            <div class="sk-cube sk-cube7"></div>
-                                            <div class="sk-cube sk-cube8"></div>
-                                            <div class="sk-cube sk-cube9"></div>
-                                        </div>
-                                    
-                                    <!--div class="chart-container">
-                                        <div class="" style="height:280px" id="platform_type_dates_donut"></div>
-                                    </div-->
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="card-box">
-                                    <h4 class="header-title m-t-0">Realtime Statistics</h4>
-                                    <div id="flotRealTime" style="height: 320px;" class="flot-chart m-t-30"></div>
-                                </div>
-                                    <!--div class="text-center">
-                                        <h5 class="font-normal text-muted">You have to pay</h5>
-                                        <h3 class="m-b-30"><i class="mdi mdi-arrow-down-bold-hexagon-outline text-danger"></i> 5623 <small>USD</small></h3>
-                                    </div>
-
-                                    <div class="chart-container">
-                                        <div class="" style="height:280px" id="user_type_bar"></div>
-                                    </div-->
+                                            <div class="chart-container">
+                                                <div class="" style="height:280px" id="user_type_bar"></div>
+                                            </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -540,6 +508,7 @@
         <!--C3 Chart-->
         <script type="text/javascript" src="{{url_for('static',filename='plugins/d3/d3.min.js')}}"></script>
         <script type="text/javascript" src="{{url_for('static',filename='plugins/c3/c3.min.js')}}"></script>
+        <script src="{{url_for('static',filename='assets/pages/jquery.c3-chart.init.js')}}"></script>
 
         <!--Echart Chart-->
         <script src="{{url_for('static',filename='plugins/echart/echarts-all.js')}}"></script>
@@ -564,6 +533,9 @@
         <script src="{{url_for('static',filename='plugins/flot-chart/curvedLines.js')}}"></script>
         <script src="{{url_for('static',filename='plugins/flot-chart/jquery.flot.axislabels.js')}}"></script>
         <script src="{{url_for('static',filename='assets/pages/jquery.flot.init.js')}}"></script>
+
+        <script src="{{url_for('static',filename='plugins/chart.js/chart.min.js')}}"></script>
+        <script src="{{url_for('static',filename='assets/pages/jquery.chartjs.init.js')}}"></script>
 
     </body>
 </html>
