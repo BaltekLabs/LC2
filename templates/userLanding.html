@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Liquid Chain | {{ user_name }}'s access page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static',filename='css/base.css')}}" />
+    <!--script src="main.js"></script-->
+
+
+</head>
+<body style="background-color: black">
+       
+       
+    <div id="stock_search_insert">
+        <h2 style="color: snow; text-align: center; padding-top:15%">Hello {{ user_name }}, Search for an instrument below</h2>
+        <div style="text-align:center">
+        <form style="height:350px;padding: 5%" action="/stockQuote" method="POST">
+            <input name="stock_search" type="text" class="user_form">
+            <!--input type="submit" style="border-color:snow;color: snow;width: 175px;height:55px;background-color: black;border-radius: 9px" value="Find Liquidity"-->
+        </form> 
+        </div>
+    </div>
+    <!--script type=text/javascript src="{{url_for('static', filename='js/main.js') }}"></script-->
+   
+    
+</body>
+</html>

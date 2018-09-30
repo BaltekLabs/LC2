@@ -1,0 +1,124 @@
+<!doctype html>
+<head>
+    <!--meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Liquid Chain | Block Chain Trading</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static',filename='css/base.css')}}" />
+    script src="main.js"></script-->
+    <meta charset="utf-8" />
+    <title>Adminox - Responsive Web App Kit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{url_for('static',filename='assets/images/favicon.ico')}}">
+
+    <!-- C3 charts css -->
+    <link href="{{url_for('static',filename='../plugins/c3/c3.min.css')}}" rel="stylesheet" type="text/css"  />
+
+    <!-- App css -->
+    <link href="{{url_for('static',filename='assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{url_for('static',filename='assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{url_for('static',filename='assets/css/metismenu.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{url_for('static',filename='assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+
+    <script src="{{url_for('static',filename='assets/js/modernizr.min.js')}}"></script>
+
+
+</head>
+<body style="background-color:darkslategray">
+    <!--div id="trader_id_insert">
+        <h2 style="color: snow; text-align: center; padding-top:15%">Enter Your Trader ID Number Below</h2>
+        <div style="text-align:center">
+                <form style="height:350px;padding: 5%" action="/userHome" method="POST">
+                    <input name="user_id" type="text" class="user_form">
+                    <!--input type="submit" style="border-color:snow;color: snow;width: 175px;height:55px;background-color: black;border-radius: 9px" value="Find Liquidity">
+                </form> 
+        </div>
+    </div-->
+     <!-- HOME -->
+     <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="wrapper-page">
+
+                        <div class="account-pages">
+                            <div class="account-box">
+                                <div class="text-center account-logo-box">
+                                    <h2 class="text-uppercase">
+                                        <a href="index.html" class="text-success">
+                                            <span><img src="assets/images/logo_dark.png" alt="" height="30"></span>
+                                        </a>
+                                    </h2>
+                                    <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
+                                </div>
+                                <div class="account-content">
+                                    <div class="text-center m-b-20">
+                                        <p class="text-muted m-b-0">Enter your trader ID number given to you by a Liquid Chain member.</p>
+                                    </div>
+                                    
+                                    <form class="form-horizontal" action="/userHome" method="POST">
+
+                                        <div class="form-group row m-b-20">
+                                            <div class="col-12">
+                                                
+                                                <input name="user_id" class="form-control" type="text" id="emailaddress" placeholder="Trader ID">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row text-center m-t-10">
+                                            <div class="col-12">
+                                                <button class="btn btn-md btn-block btn-primary waves-effect waves-light" type="submit">Start Trading</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                    <div class="clearfix"></div>
+
+                                    <!--div class="row m-t-40">
+                                        <div class="col-sm-12 text-center">
+                                            <p class="text-muted">Back to <a href="page-login.html" class="text-dark m-l-5"><b>Sign In</b></a></p>
+                                        </div>
+                                    </div-->
+
+                                </div>
+
+                            </div>
+                            <!-- end card-box-->
+                        </div>
+
+
+                    </div>
+                    <!-- end wrapper -->
+
+                </div>
+            </div>
+        </div>
+      </section>
+      <!-- END HOME -->
+
+
+
+    <script>
+        var resizefunc = [];
+    </script>
+
+    <!-- jQuery  -->
+    <script src="{{url_for('static',filename='assets/js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='assets/js/popper.min.js')}}"></script><!-- Popper for Bootstrap -->
+    <script src="{{url_for('static',filename='assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static',filename='assets/js/metisMenu.min.js')}}"></script>
+    <script src="{{url_for('static',filename='assets/js/waves.js')}}"></script>
+    <script src="{{url_for('static',filename='assets/js/jquery.slimscroll.js')}}"></script>
+
+    <!-- App js -->
+    <script src="{{url_for('static',filename='assets/js/jquery.core.js')}}"></script>
+    <script src="{{url_for('static',filename='assets/js/jquery.app.js')}}"></script>
+</body>
+</html>

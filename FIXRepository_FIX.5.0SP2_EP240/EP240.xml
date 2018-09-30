@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?altova_sps ..\..\tools\EP\EP.sps?>
+<fixRepository xmlns="http://www.fixprotocol.org/extensionpack" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="FIX.5.0SP2" xsi:schemaLocation="http://www.fixprotocol.org/extensionpack ..\..\schema\extensionpack.xsd">
+	<extensionPack approved="2017-12-30T17:00:00" desc="CME Average Pricing and Price Markup" id="240" tempIntermediatePath="../EP239/">
+		<Abbreviations>
+			<Inserts>
+				<Abbreviation Term="Markup">
+					<AbbrTerm>Mrkup</AbbrTerm>
+					<Usage>PriceMarkup(2762)</Usage>
+				</Abbreviation>
+			</Inserts>
+		</Abbreviations>
+		<Fields>
+			<Inserts>
+				<Field Tag="2762">
+					<Name>PriceMarkup</Name>
+					<Type>PriceOffset</Type>
+					<AbbrName>PxMrkup</AbbrName>
+					<NotReqXML>0</NotReqXML>
+					<Description>Price offset of the markup denominated in the price type of the trade.</Description>
+					<Elaboration>The field is expressed in a value that can simply be added to or subtracted from the (clean) price to reach the marked- up price. E.g., a percent of par price of 98 marked up to 98.5 should be 0.5, an FX rate of 1.17936 marked up to 1.19 should be 0.01064, a stock price of 22.75 marked up to 22.9 should be 0.15, etc.</Elaboration>
+				</Field>
+				<Field Tag="2763">
+					<Name>AveragePriceType</Name>
+					<Type>int</Type>
+					<AbbrName>Typ</AbbrName>
+					<NotReqXML>0</NotReqXML>
+					<Description>The average pricing model used for block trades.</Description>
+				</Field>
+				<Field Tag="2764">
+					<Name>AveragePriceStartTime</Name>
+					<Type>UTCTimestamp</Type>
+					<AbbrName>StartTm</AbbrName>
+					<NotReqXML>0</NotReqXML>
+					<Description>Start of the time period during which price averaging occurred.</Description>
+				</Field>
+				<Field Tag="2765">
+					<Name>AveragePriceEndTime</Name>
+					<Type>UTCTimestamp</Type>
+					<AbbrName>EndTm</AbbrName>
+					<NotReqXML>0</NotReqXML>
+					<Description>End of the time period during which price averaging occurred.</Description>
+				</Field>
+				<Field Tag="2766">
+					<Name>OrderPercentOfTotalVolume</Name>
+					<Type>Percentage</Type>
+					<AbbrName>TotVolPct</AbbrName>
+					<NotReqXML>0</NotReqXML>
+					<Description>For Percent-of-volume (POV) average pricing this is the target percentage this order quantity represents of the total trading volume of an instrument during the specified time period. This provides the data needed to ensure that the average price is fair based on the total sum of grouped POV trades. </Description>
+					<Elaboration>For example, if during the POV time period there are 5 trades including this one with a total volume of 5000 and this trade has a quantity of 1000 then the OrderPercentOfTotalVolume(2766) of this trade is 20 percent expressed as &quot;0.20&quot;.</Elaboration>
+				</Field>
+				<Field Tag="2767">
+					<Name>AllocGroupStatus</Name>
+					<Type>int</Type>
+					<AbbrName>GrpStat</AbbrName>
+					<NotReqXML>0</NotReqXML>
+					<Description>Status of the trade give-up relative to the group identified in AllocGroupID(1730).</Description>
+				</Field>
+			</Inserts>
+		</Fields>
+		<Enums>
+			<Updates>
+				<Enum Tag="891" Value="0">
+					<Elaboration>The fee or markup is a total fixed amount expressed in the currency of the trade.
+</Elaboration>
+				</Enum>
+				<Enum Tag="891" Value="1">
+					<Elaboration>The fee or markup is an amount per quantity unit, i.e. per share or contract, expressed in the currency of the trade.</Elaboration>
+				</Enum>
+				<Enum Tag="891" Value="2">
+					<Elaboration>The percentage is expressed in standard FIX &quot;Percentage&quot; datatype format, i.e. &quot;0.01&quot; for 1 percent and ranges between 0 and 1. It is the number which when multiplied by the trade price and quantity produces the total amount of the fee or markup.</Elaboration>
+				</Enum>
+				<Enum Tag="2641" Value="7">
+					<SymbolicName>ResearchPayment</SymbolicName>
+				</Enum>
+			</Updates>
+			<Inserts>
+				<Enum Tag="819" Value="4">
+					<SymbolicName>AveragePricedTrade</SymbolicName>
+					<Sort>5</Sort>
+					<Description>Trade is average priced</Description>
+				</Enum>
+				<Enum Tag="2763" Value="0">
+					<SymbolicName>TimeWeightedAveragePrice</SymbolicName>
+					<Sort>0</Sort>
+					<Description>Time weighted average price</Description>
+					<Elaboration>TWAP is the simple average price of a security over a specified time without regard to the volume traded.</Elaboration>
+				</Enum>
+				<Enum Tag="2763" Value="1">
+					<SymbolicName>VolumeWeightedAveragePrice</SymbolicName>
+					<Sort>1</Sort>
+					<Description>Volume weighted average price</Description>
+					<Elaboration>VWAP is the sum of the currency amount traded for all trades in the averaging group (price times quantity) divided by the total quantity.</Elaboration>
+				</Enum>
+				<Enum Tag="2763" Value="2">
+					<SymbolicName>PercentOfVolumeAvveragePrice</SymbolicName>
+					<Sort>2</Sort>
+					<Description>Percent of volume average price</Description>
+					<Elaboration>POV is the sum of the currency amount traded for all trades executed as part of an order intended to purchase a specified percentage of the total volume of an instrument, divided by the total quantity.</Elaboration>
+				</Enum>
+				<Enum Tag="2763" Value="3">
+					<SymbolicName>LimitOrderAveragePrice</SymbolicName>
+					<Sort>3</Sort>
+					<Description>Limit order average price</Description>
+					<Elaboration>The limit order average price is the currency amount of all trades executed to fill a limit order, divided by the total quantity.</Elaboration>
+				</Enum>
+				<Enum Tag="2767" Value="0">
+					<SymbolicName>Added</SymbolicName>
+					<Sort>0</Sort>
+					<Description>Added</Description>
+					<Elaboration>This trade has been associated with the group for the first time.</Elaboration>
+				</Enum>
+				<Enum Tag="2767" Value="1">
+					<SymbolicName>Canceled</SymbolicName>
+					<Sort>1</Sort>
+					<Description>Canceled</Description>
+					<Elaboration>This trade has been removed from the group.</Elaboration>
+				</Enum>
+				<Enum Tag="2767" Value="2">
+					<SymbolicName>Replaced</SymbolicName>
+					<Sort>2</Sort>
+					<Description>Replaced</Description>
+					<Elaboration>This trade already in the group has been updated.</Elaboration>
+				</Enum>
+			</Inserts>
+		</Enums>
+		<Components>
+			<Updates>
+				<Component ComponentID="2264">
+					<Description>Used to identify the rate index for a floating rate coupon.</Description>
+				</Component>
+			</Updates>
+			<Inserts>
+				<Component ComponentID="1075">
+					<ComponentType>Block</ComponentType>
+					<CategoryID>Common</CategoryID>
+					<Name>AveragePriceDetail</Name>
+					<AbbrName>AvgPxDetl</AbbrName>
+					<NotReqXML>0</NotReqXML>
+					<Description>The AveragePriceDetail component provides average pricing details in a trade report, including the average pricing model and the start and end times of averaging period.</Description>
+				</Component>
+			</Inserts>
+		</Components>
+		<MsgContents>
+			<Inserts>
+				<MsgContent ComponentID="1075" TagText="2763">
+					<Indent>0</Indent>
+					<Position>1</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="1075" TagText="2764">
+					<Indent>0</Indent>
+					<Position>2</Position>
+					<Reqd>0</Reqd>
+					<Description>Required if AveragePriceType(2763)=2 (Percent of volume average price) or 0 (Time weighted average price).</Description>
+				</MsgContent>
+				<MsgContent ComponentID="1075" TagText="2765">
+					<Indent>0</Indent>
+					<Position>3</Position>
+					<Reqd>0</Reqd>
+					<Description>Required if AveragePriceType(2763)=2  (Percent of volume average price) or 0 (Time weighted average price).</Description>
+				</MsgContent>
+				<MsgContent ComponentID="2031" TagText="819">
+					<Indent>1</Indent>
+					<Position>3.01075</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="2032" TagText="819">
+					<Indent>1</Indent>
+					<Position>14.00175</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="2143" TagText="2766">
+					<Indent>0</Indent>
+					<Position>27</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="2094" TagText="1730">
+					<Indent>1</Indent>
+					<Position>65.01</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="2094" TagText="2759">
+					<Indent>1</Indent>
+					<Position>65.015</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="2094" TagText="2767">
+					<Indent>1</Indent>
+					<Position>65.02</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="2061" TagText="1730">
+					<Indent>1</Indent>
+					<Position>65.025</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="2061" TagText="2759">
+					<Indent>1</Indent>
+					<Position>65.03</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="2061" TagText="2767">
+					<Indent>1</Indent>
+					<Position>65.035</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="64" TagText="2762">
+					<Indent>0</Indent>
+					<Position>36.105</Position>
+					<Reqd>0</Reqd>
+					<Description>Dealer&apos;s markup of market price to LastPx(31).</Description>
+				</MsgContent>
+				<MsgContent ComponentID="64" TagText="AveragePriceDetail">
+					<Indent>0</Indent>
+					<Position>36.1075</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+				<MsgContent ComponentID="77" TagText="2762">
+					<Indent>0</Indent>
+					<Position>20.0205</Position>
+					<Reqd>0</Reqd>
+					<Description>Dealer&apos;s markup of market price to LastPx(31).</Description>
+				</MsgContent>
+				<MsgContent ComponentID="77" TagText="AveragePriceDetail">
+					<Indent>0</Indent>
+					<Position>20.02075</Position>
+					<Reqd>0</Reqd>
+				</MsgContent>
+			</Inserts>
+		</MsgContents>
+	</extensionPack>
+</fixRepository>
