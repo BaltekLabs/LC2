@@ -27,7 +27,22 @@ def userLanding():
 def falseIdent():
     return render_template('/homelandingNullLogin.html')
 
+@app.route('/profile')
+def profile():
+    user_name = session.get('user_name',None)
+    return render_template('/extras-profile.html',user_name=user_name)
 
+@app.route('/research')
+def research():
+    return render_template('research.html')
+
+@app.route('/calendar')
+def calendar():
+     return render_template('calendar.html')
+
+@app.route('/messageBox')
+def messageBox():
+    return render_template('/email-inbox.html')
 
 # FORM ROUTES
 
@@ -39,10 +54,10 @@ def userHome():
         user_num = request.form['user_id']
         
     if user_num == "1":
-            user_name = "William"
+           user_name  = "William"
     else:
         return redirect('/falseIdent')
-        
+    session['user_name']= user_name   
     return render_template('/index.html', user_name=user_name)
         
 @app.route('/stockQuote', methods=['GET','POST'])
