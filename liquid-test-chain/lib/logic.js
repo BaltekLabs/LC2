@@ -19,6 +19,7 @@
  * @param {org.example.trading.Trade} trade - the trade to be processed
  * @transaction
  */
+//TODO: Create trade fnctions for different insruments
 async function tradeCommodity(trade) { // eslint-disable-line no-unused-vars
 
     // set the new owner of the commodity
