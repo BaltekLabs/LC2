@@ -1,19 +1,32 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 import requests
 import io
-#import pandas as pd
+from flask_pymongo import PyMongo
+import bcrypt
+
 import csv
 #from lightmatchingengine.lightmatchingengine import LightMatchingEngine, Side
-
+#import pandas as pd
 #lme = LightMatchingEngine()
 
+
+# APP CONFIG
 app = Flask(__name__)
+
+app.config['MONGO_DBNAME'] = 'mongologinexample'
+app.config['MONGO_URI'] = 'mongodb://pretty:printed@ds021731.mlab.com:21731/mongologinexample'
+
+mongo = PyMongo(app)
+
 
 # PAGE ROUTES
 
 @app.route("/")
 def index():
-    return render_template('/homeLanding.html')  
+    if 'username' in session:
+        return 'You are logged in as ' + session['username']
+
+    return render_template('index.html')
 
 @app.route('/homeLanding')
 def home():
@@ -58,7 +71,7 @@ def userHome():
     else:
         return redirect('/falseIdent')
     session['user_name']= user_name   
-    return render_template('/index.html', user_name=user_name)
+    return render_template('/user-main.html', user_name=user_name)
         
 @app.route('/stockQuote', methods=['GET','POST'])
 def stockQuote():
@@ -104,13 +117,45 @@ def buyEntered():
 
 
 
+#USER AUTHENTIFICATION 
+
+@app.route('/login', methods=['POST'])
+def login():
+    users = mongo.db.users
+    login_user = users.find_one({'name' : request.form['username']})
+
+    if login_user:
+        if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+            session['username'] = request.form['username']
+            return redirect(url_for('/'))
+
+    return 'Invalid username/password combination'
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'name' : request.form['username']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name' : request.form['username'], 'password' : hashpass})
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+        
+        return 'That username already exists!'
+
+    return render_template('register.html')
+
+
+
+
+
 
 #Functions
 
 if __name__ == "__main__":
     app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
-
-   
     app.run(debug=True)
     
